@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/he": "^1.2.3",
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "gsap": "^3.12.5",
     "he": "^1.2.0",
     "install": "^0.13.0",

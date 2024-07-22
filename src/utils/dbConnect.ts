@@ -6,25 +6,27 @@ if (!MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-let cached = global.mongoose;
-
-if (!cached) {
-    cached = global.mongoose = { conn: null, promise: null };
+interface CachedMongoose {
+    conn: mongoose.Mongoose | null;
+    promise: Promise<mongoose.Mongoose> | null;
 }
 
-async function dbConnect() {
+// Node.js global object는 타입이 없기 때문에, TypeScript에서 정확한 타입을 지정
+declare global {
+    var mongoose: CachedMongoose | undefined;
+}
+
+let cached: CachedMongoose = global.mongoose || { conn: null, promise: null };
+
+async function dbConnect(): Promise<mongoose.Mongoose> {
     if (cached.conn) {
         return cached.conn;
     }
 
     if (!cached.promise) {
-        const opts = {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            bufferCommands: false,
-        };
-
-        cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+        cached.promise = mongoose.connect(MONGODB_URI, {
+            // 최신 버전에서는 이 옵션들이 기본값으로 설정되므로, 제거 가능합니다.
+        }).then((mongoose) => {
             return mongoose;
         });
     }

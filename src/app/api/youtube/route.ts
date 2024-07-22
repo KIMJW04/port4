@@ -1,5 +1,3 @@
-// src/app/api/youtube/route.ts
-
 import axios from 'axios';
 
 interface VideoSnippet {
@@ -55,9 +53,13 @@ export async function fetchVideos(query = 'full stack', pageToken = ''): Promise
             },
         });
 
+        // Ensure that `response.data.items` is an array of `VideoItem`
+        const videos = response.data.items as VideoItem[];
+        const nextPageToken = response.data.nextPageToken || '';
+
         return {
-            videos: response.data.items,
-            nextPageToken: response.data.nextPageToken || '',
+            videos,
+            nextPageToken,
         };
     } catch (error) {
         console.error('Error fetching videos', error);

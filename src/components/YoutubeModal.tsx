@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import React from "react";
 import Draggable from "react-draggable";
-import YouTube, { Options } from "react-youtube";
+import YouTube from "react-youtube";
 import he from 'he';
 
 interface VideoSnippet {
@@ -24,12 +24,9 @@ interface YoutubeModalProps {
 const YoutubeModal: React.FC<YoutubeModalProps> = ({ video, onClose }) => {
     if (!video) return null;
 
-    const opts: Options = {
-        playerVars: {
-            autoplay: 1,
-        },
-        width: '100%',
-        height: '100%',
+    // playerVars 설정
+    const playerVars = {
+        autoplay: 1,
     };
 
     return (
@@ -45,7 +42,11 @@ const YoutubeModal: React.FC<YoutubeModalProps> = ({ video, onClose }) => {
                     </h3>
                 </div>
                 <div className="relative pb-[56.25%] h-0">
-                    <YouTube videoId={video.id.videoId} opts={opts} className="absolute top-0 left-0 w-full h-full" />
+                    <YouTube
+                        videoId={video.id.videoId}
+                        opts={{ playerVars }} // playerVars를 직접 설정
+                        className="absolute top-0 left-0 w-full h-full"
+                    />
                 </div>
             </div>
         </Draggable>

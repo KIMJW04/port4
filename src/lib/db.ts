@@ -1,22 +1,29 @@
 // lib/db.ts
-import { connectToDatabase } from './mongodb';
+import clientPromise from './mongodb';
 
-export async function saveUserToDatabase(user: any) {
-    const db = await connectToDatabase();
-    const usersCollection = db.collection('users');
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    image: string;
+}
 
-    // 사용자 정보를 데이터베이스에 저장
-    await usersCollection.updateOne(
-        { email: user.email },
-        {
-            $set: {
-                name: user.name,
-                image: user.image,
-                email: user.email,
-                phone: user.phone || '', // 전화번호가 없을 경우 빈 문자열로 설정
-                updatedAt: new Date(),
-            },
-        },
-        { upsert: true } // 사용자 정보가 없으면 새로 생성
-    );
+export async function saveUserToDatabase(user: User) {
+    try {
+        const client = await clientPromise;
+        const db = client.db();
+        const collection = db.collection('users');
+
+        // Update or insert the user document
+        await collection.updateOne(
+            { id: user.id },
+            { $set: user },
+            { upsert: true }
+        );
+
+        console.log("User saved successfully");
+    } catch (error) {
+        console.error("Error saving user to database:", error);
+        throw error;
+    }
 }

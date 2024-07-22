@@ -48,7 +48,17 @@ const YoutubeLayer: React.FC<YoutubeLayerProps> = ({ onClose }) => {
         }
 
         const { videos: newVideos, nextPageToken: newNextPageToken } = await fetchVideos(searchQuery, isLoadMore ? nextPageToken : "");
-        setVideos((prevVideos) => (isLoadMore ? [...prevVideos, ...newVideos] : newVideos));
+
+        setVideos((prevVideos) => {
+            // Ensure prevVideos is an array
+            if (!Array.isArray(prevVideos)) {
+                console.error('prevVideos is not an array');
+                return newVideos;
+            }
+
+            return isLoadMore ? [...prevVideos, ...newVideos] : newVideos;
+        });
+
         setNextPageToken(newNextPageToken);
 
         setTimeout(() => {
