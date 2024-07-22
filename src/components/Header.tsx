@@ -81,14 +81,14 @@ const Header: React.FC<HeaderProps> = ({ onLoginButtonClick }) => {
     return (
         <header id="header" className="fixed top-0 left-0 z-50 w-full bg-black bg-opacity-50 backdrop-blur-lg font-GmarketSans">
             <div className="flex items-center justify-between w-full">
-                <div className='flex'>
+                <div className='flex items-center'>
                     <h1 className="flex text-xs font-bold text-white uppercase pl-[1.875rem] pr-5 pb-3 pt-[0.625rem] relative after:content-['*'] after:left-[10px] after:top-[11px] after:w-[14px] after:h-[14px] after:bg-logo after:bg-cover after:absolute">
                         Jin Woo
                     </h1>
                     {status === 'authenticated' ? (
-                        <button className="text-white" onClick={() => signOut()}>Logout</button>
+                        <button className='font-bold text-white text-xs border rounded p-1' onClick={() => signOut()}>Logout</button>
                     ) : (
-                        <button className="text-white" onClick={onLoginButtonClick}>Login</button> // Use prop to handle login
+                        <button className='font-bold text-white text-xs border rounded p-1' onClick={onLoginButtonClick}>Login</button> // Use prop to handle login
                     )}
                 </div>
                 <div className="flex items-center right">
