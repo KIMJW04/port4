@@ -191,20 +191,15 @@
 *,
 *::before,
 *::after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 * {
-    scrollbar-color: #c0c0c0 transparent;
-    /* 투명한 배경색과 회색 스크롤바 */
+    scrollbar-color: #c0c0c0 transparent; /* 투명한 배경색과 회색 스크롤바 */
 }
 
 html {
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body,
@@ -308,12 +303,7 @@ input,
 textarea,
 button,
 select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    -o-border-radius: 0;
     border-radius: 0;
     font-size: 16px;
 }
@@ -350,7 +340,7 @@ select {
 }
 
 body {
-    @apply bg-black;
+    background-color: #000;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -364,17 +354,17 @@ body {
     height: 100%;
     z-index: 1;
     object-fit: cover;
-
-    video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
 }
 
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .layer__contents {
-    @apply bg-[#223167a8] backdrop-blur-[30px] h-[calc(100%-60px)] rounded-t-lg p-[5%] overflow-y-scroll relative;
+    @apply bg-[#223167a8] h-[calc(100%-60px)] rounded-t-lg p-[5%] overflow-y-scroll relative;
+    backdrop-filter: blur(30px); /* Ensure this is not overridden by other CSS */
 }
 
 .layer__footer .close {
@@ -385,31 +375,31 @@ body {
 
 .loader__circle {
     @apply absolute -rotate-45 opacity-0 w-9 h-9 animate-loader__circle;
+}
 
-    &:after {
-        content: '';
-        position: absolute;
-        width: 5px;
-        height: 5px;
-        border-radius: 5px;
-        background: #fff;
-    }
+.loader__circle:after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    background: #fff;
+}
 
-    &:nth-child(2) {
-        animation-delay: 240ms;
-    }
+.loader__circle:nth-child(2) {
+    animation-delay: 240ms;
+}
 
-    &:nth-child(3) {
-        animation-delay: 480ms;
-    }
+.loader__circle:nth-child(3) {
+    animation-delay: 480ms;
+}
 
-    &:nth-child(4) {
-        animation-delay: 720ms;
-    }
+.loader__circle:nth-child(4) {
+    animation-delay: 720ms;
+}
 
-    &:nth-child(5) {
-        animation-delay: 960ms;
-    }
+.loader__circle:nth-child(5) {
+    animation-delay: 960ms;
 }
 
 .MusicPlayer__currently-playing h2 {
@@ -418,51 +408,22 @@ body {
 
 @layer components {
     @keyframes rotator {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(270deg);
-        }
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(270deg); }
     }
 
     @keyframes colors {
-        0% {
-            stroke: #4285f4;
-        }
-
-        25% {
-            stroke: #de3e35;
-        }
-
-        50% {
-            stroke: #f7c223;
-        }
-
-        75% {
-            stroke: #1b9a59;
-        }
-
-        100% {
-            stroke: #4285f4;
-        }
+        0% { stroke: #4285f4; }
+        25% { stroke: #de3e35; }
+        50% { stroke: #f7c223; }
+        75% { stroke: #1b9a59; }
+        100% { stroke: #4285f4; }
     }
 
     @keyframes dash {
-        0% {
-            stroke-dashoffset: 187;
-        }
-
-        50% {
-            stroke-dashoffset: 46.75;
-            transform: rotate(135deg);
-        }
-
-        100% {
-            stroke-dashoffset: 187;
-            transform: rotate(450deg);
-        }
+        0% { stroke-dashoffset: 187; }
+        50% { stroke-dashoffset: 46.75; transform: rotate(135deg); }
+        100% { stroke-dashoffset: 187; transform: rotate(450deg); }
     }
 
     .spinner {
@@ -477,42 +438,25 @@ body {
     }
 }
 
-#footer {
-    .menu {
-        ul {
-            li {
-                button {
-                    transition: all 0.3s;
-                    transform-origin: 40% 70%;
-                }
+#footer .menu ul li button {
+    transition: all 0.3s;
+    transform-origin: 40% 70%;
+}
 
-                &:hover {
-                    button {
-                        transform: scale(2);
-                        margin: 0 2em;
-                        border-radius: 50%;
-                    }
-                }
+#footer .menu ul li:hover button {
+    transform: scale(2);
+    margin: 0 2em;
+    border-radius: 50%;
+}
 
-                &:hover+li {
-                    button {
-                        transform: scale(1.5);
-                        margin: 0 1.5em;
-                    }
-                }
-            }
-        }
-    }
+#footer .menu ul li:hover+li button {
+    transform: scale(1.5);
+    margin: 0 1.5em;
 }
 
 @keyframes marquee {
-    0% {
-        transform: translateX(100%);
-    }
-
-    100% {
-        transform: translateX(-100%);
-    }
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
 .animate-marquee {

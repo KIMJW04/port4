@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx,html}'], // 사용되는 파일 경로 설정
   theme: {
     extend: {
       animation: {
@@ -10,74 +10,31 @@ module.exports = {
         'fade-out-down': 'fade-out-down 0.4s ease-in forwards',
       },
       backgroundImage: {
-        Loading_Bg: "url('/assets/img/Loading_bg.jpg')", // 사용자 정의 배경 이미지
-        bg_1: "url('/assets/img/bg1.jpg')", // 사용자 정의 배경 이미지
-        bg_2: "url('/assets/img/window_bg.jpg')", // 사용자 정의 배경 이미지
-        logo: "url('/assets/img/star.svg')", // 사용자 정의 배경 이미지
-        footer_1: "url('/assets/img/nib.jpg')", // 사용자 정의 배경 이미지
-        footer_2: "url('/assets/img/youtube.png')", // 사용자 정의 배경 이미지
+        Loading_Bg: "url('/assets/img/Loading_bg.jpg')",
+        bg_1: "url('/assets/img/bg1.jpg')",
+        bg_2: "url('/assets/img/window_bg.jpg')",
+        logo: "url('/assets/img/star.svg')",
+        footer_1: "url('/assets/img/nib.jpg')",
+        footer_2: "url('/assets/img/youtube.png')",
       },
       keyframes: {
         orbit: {
-          '0%': {
-            transform: 'rotate(225deg)',
-            opacity: 1,
-            animationTimingFunction: 'ease-out',
-          },
-          '7%': {
-            transform: 'rotate(345deg)',
-            animationTimingFunction: 'linear',
-          },
-          '30%': {
-            transform: 'rotate(455deg)',
-            animationTimingFunction: 'ease-in-out',
-          },
-          '39%': {
-            transform: 'rotate(690deg)',
-            animationTimingFunction: 'linear',
-          },
-          '70%': {
-            transform: 'rotate(815deg)',
-            opacity: 1,
-            animationTimingFunction: 'ease-out',
-          },
-          '75%': {
-            transform: 'rotate(945deg)',
-            animationTimingFunction: 'ease-out',
-          },
-          '76%': {
-            transform: 'rotate(945deg)',
-            opacity: 0,
-          },
-          '100%': {
-            transform: 'rotate(945deg)',
-            opacity: 0,
-          },
+          '0%': { transform: 'rotate(225deg)', opacity: 1, animationTimingFunction: 'ease-out' },
+          '7%': { transform: 'rotate(345deg)', animationTimingFunction: 'linear' },
+          '30%': { transform: 'rotate(455deg)', animationTimingFunction: 'ease-in-out' },
+          '39%': { transform: 'rotate(690deg)', animationTimingFunction: 'linear' },
+          '70%': { transform: 'rotate(815deg)', opacity: 1, animationTimingFunction: 'ease-out' },
+          '75%': { transform: 'rotate(945deg)', animationTimingFunction: 'ease-out' },
+          '76%': { transform: 'rotate(945deg)', opacity: 0 },
+          '100%': { transform: 'rotate(945deg)', opacity: 0 },
         },
         'fade-in-up': {
-          '0%': {
-            top: "50%",
-            opacity: 0,
-            transform: 'translateY(-45%)'
-          },
-          '100%': {
-            top: "50%",
-            opacity: 1,
-            transform: 'translateY(-50%)'
-          },
+          // '0%': { transform: 'translateY(5%)' },
+          // '100%': { transform: 'translateY(0%)' },
         },
         'fade-out-down': {
-          '0%': {
-            top: "50%",
-            opacity: 1,
-            transform: 'translateY(-50%)'
-          },
-          '100%': {
-            top: "50%",
-            opacity: 0,
-            transform: 'translateY(-45%)',
-            visibility: 'hidden'
-          }
+          // '0%': { transform: 'translateY(0%)' },
+          // '100%': { transform: 'translateY(5%)', visibility: 'hidden' },
         },
       },
       colors: {
@@ -125,6 +82,7 @@ module.exports = {
     extend: {
       transform: ['hover'],
       scale: ['hover'],
+      backdropBlur: ['responsive'],
     },
   },
   plugins: [],

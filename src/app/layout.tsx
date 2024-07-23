@@ -2,6 +2,7 @@
 import './globals.css';
 import { ReactNode } from 'react';
 import ConditionalLayout from '@/components/ConditionalLayout';
+import { LayerProvider } from '@/context/LayerContext';
 
 export const metadata = {
   title: 'Miento',
@@ -13,7 +14,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <body>
-        <ConditionalLayout>{children}</ConditionalLayout>
+        <LayerProvider>
+          <ConditionalLayout>{children}</ConditionalLayout>
+        </LayerProvider>
       </body>
     </html>
   );
