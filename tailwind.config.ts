@@ -102,6 +102,9 @@ module.exports = {
           100: "#c0c0c0",
         },
       },
+      backdropBlur: {
+        "30px": "30px",
+      },
       fontFamily: {
         neogeo: ["NeoGeoTrial"],
         Chomsky: ["Chomsky"],
