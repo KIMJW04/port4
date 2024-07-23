@@ -1,74 +1,52 @@
-// 'use client';
+import React, { useState, useRef } from 'react';
+import { useSocketContext } from '@/context/SocketContext';
+import Draggable from 'react-draggable';
 
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { useSocket } from '@/components/socket-provider';
+interface ChatLayerProps {
+    onClose: () => void;
+    style?: React.CSSProperties;
+}
 
-// interface Message {
-//     userId: number;
-//     content: string;
-// }
+const ChatLayer: React.FC<ChatLayerProps> = ({ onClose, style }) => {
+    const { messages, sendMessage } = useSocketContext();
+    const [inputMessage, setInputMessage] = useState('');
+    const nodeRef = useRef<HTMLDivElement>(null);
 
-// const ChatPage = () => {
-//     const [messages, setMessages] = useState<Message[]>([]);
-//     const [currentMessage, setCurrentMessage] = useState('');
-//     const { socket, isConnected } = useSocket();
-//     const [userId, setUserId] = useState<number>(+new Date());
+    const handleSendMessage = () => {
+        sendMessage(inputMessage);
+        setInputMessage('');
+    };
 
-//     useEffect(() => {
-//         if (!socket) return;
+    return (
+        <Draggable nodeRef={nodeRef}>
+            <div ref={nodeRef} className="w-[400px] h-[500px] fixed text-white bg-black rounded-lg left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" style={style}>
+                <div className="p-4">
+                    <h3 className="text-lg font-bold">Chat</h3>
+                    <div className="overflow-y-auto h-[300px] border border-gray-500 p-2">
+                        {messages.map((message, index) => (
+                            <div key={index} className="my-2 p-2 bg-gray-700 rounded">
+                                {message}
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-4 flex">
+                        <input
+                            type="text"
+                            className="flex-grow p-2 border border-gray-500 rounded"
+                            value={inputMessage}
+                            onChange={(e) => setInputMessage(e.target.value)}
+                        />
+                        <button className="ml-2 p-2 bg-blue-500 rounded" onClick={handleSendMessage}>
+                            Send
+                        </button>
+                    </div>
+                    <button className="absolute top-2 right-2" onClick={onClose}>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </Draggable>
+    );
+};
 
-//         socket.on('message', (data: Message) => {
-//             setMessages((prevMessages) => [...prevMessages, data]);
-//         });
-
-//         return () => {
-//             socket.off('message');
-//         };
-//     }, [socket]);
-
-//     const sendMessage = async (e: React.MouseEvent<HTMLButtonElement>) => {
-//         e.preventDefault();
-//         if (currentMessage.trim()) {
-//             await axios.post('/api/chat', {
-//                 userId,
-//                 content: currentMessage,
-//             });
-//             setCurrentMessage('');
-//         }
-//     };
-
-//     return (
-//         <div className="fixed inset-0 flex items-center justify-center p-4 bg-gray-800 text-white">
-//             <div className="w-full max-w-lg p-4 bg-gray-900 rounded shadow-md">
-//                 <div className="h-64 p-2 mb-4 overflow-y-auto bg-gray-700 rounded">
-//                     {messages.map((message, index) => (
-//                         <div
-//                             key={index}
-//                             className={`p-2 mb-2 rounded ${message.userId === userId ? 'bg-blue-400 text-white' : 'bg-gray-600'}`}
-//                         >
-//                             {message.content}
-//                         </div>
-//                     ))}
-//                 </div>
-//                 <div className="flex items-center mt-2">
-//                     <input
-//                         type="text"
-//                         value={currentMessage}
-//                         onChange={(e) => setCurrentMessage(e.target.value)}
-//                         className="flex-grow p-2 mr-2 bg-gray-600 border border-gray-500 rounded"
-//                         placeholder="Type your message..."
-//                     />
-//                     <button
-//                         onClick={sendMessage}
-//                         className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-//                     >
-//                         Send
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default ChatPage;
+export default ChatLayer;

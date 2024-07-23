@@ -40,13 +40,13 @@ const Footer: React.FC<FooterProps> = ({ children }) => {
                             className="block w-10 h-10 m-1 bg-black bg-opacity-50 rounded-md"
                         ></button>
                     </li>
-                    {/* <li className="relative inline-block list-none">
+                    <li className="relative inline-block list-none">
                         <button
                             data-layer="layer4"
                             onClick={handleLinkClick}
                             className="block w-10 h-10 m-1 bg-black bg-opacity-50 rounded-md"
                         ></button>
-                    </li> */}
+                    </li>
                 </ul>
             </div>
             {children}

@@ -3,7 +3,7 @@ import React from 'react';
 import AboutLayer from '@/components/Layer/About/AboutLayer';
 import YoutubeLayer from '@/components/Layer/Youtube/YoutubeLayer';
 import PortLayer from '@/components/Layer/Port/PortLayer';
-// import ChatLayer from '@/components/ChatLayer';
+import ChatLayer from '@/components/Layer/Chat/ChatLayer';
 import { useLayerContext } from '@/context/LayerContext';
 
 const LayerManager = () => {
@@ -36,13 +36,13 @@ const LayerManager = () => {
                     onClick={() => handleLayerClick('layer3')}
                 />
             )}
-            {/* {visibleLayers.includes('layer4') && (
+            {visibleLayers.includes('layer4') && (
                 <ChatLayer
                     onClose={() => hideLayer('layer4')}
                     style={{ zIndex: zIndices['layer4'] || 1000 }}
                     onClick={() => handleLayerClick('layer4')}
                 />
-            )} */}
+            )}
         </>
     );
 };

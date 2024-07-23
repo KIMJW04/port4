@@ -29,12 +29,12 @@ module.exports = {
           '100%': { transform: 'rotate(945deg)', opacity: 0 },
         },
         'fade-in-up': {
-          // '0%': { transform: 'translateY(5%)' },
-          // '100%': { transform: 'translateY(0%)' },
+          // '0%': { opactity: 0, transform: 'translateY(5%)' },
+          // '100%': { opactity: 1, transform: 'translateY(0%)' },
         },
         'fade-out-down': {
-          // '0%': { transform: 'translateY(0%)' },
-          // '100%': { transform: 'translateY(5%)', visibility: 'hidden' },
+          // '0%': { opactity: 1, transform: 'translateY(0%)' },
+          // '100%': { opactity: 0, transform: 'translateY(5%)', visibility: 'hidden' },
         },
       },
       colors: {

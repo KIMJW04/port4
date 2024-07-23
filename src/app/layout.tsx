@@ -3,6 +3,7 @@ import './globals.css';
 import { ReactNode } from 'react';
 import ConditionalLayout from '@/components/ConditionalLayout';
 import { LayerProvider } from '@/context/LayerContext';
+import { SocketProvider } from '@/context/SocketContext';
 
 export const metadata = {
   title: 'Miento',
@@ -14,9 +15,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
       <body>
-        <LayerProvider>
-          <ConditionalLayout>{children}</ConditionalLayout>
-        </LayerProvider>
+        <SocketProvider>
+          <LayerProvider>
+            <ConditionalLayout>{children}</ConditionalLayout>
+          </LayerProvider>
+        </SocketProvider>
       </body>
     </html>
   );
