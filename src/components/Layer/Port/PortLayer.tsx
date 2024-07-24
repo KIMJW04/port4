@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
-import { PROJECTS, WORKS } from '@/constants/port';
-import PortSidebar from './PortSidebar';
-import PortContentArea from './PortContentArea';
+import React, { useEffect, useRef, useState } from "react";
+import Draggable from "react-draggable";
+import { PROJECTS, WORKS } from "@/constants/port";
+import PortSidebar from "./PortSidebar";
+import PortContentArea from "./PortContentArea";
 import { useLayerContext } from "@/context/LayerContext";
 
 interface PortLayerProps {
@@ -12,7 +12,7 @@ interface PortLayerProps {
 
 const PortLayer: React.FC<PortLayerProps> = ({ onClose, style }) => {
     const nodeRef = useRef<HTMLDivElement>(null);
-    const [selectedItem, setSelectedItem] = useState<string>('project');
+    const [selectedItem, setSelectedItem] = useState<string>("project");
     const [selectedDetail, setSelectedDetail] = useState<any>(PROJECTS[0]);
     const { bringToFront } = useLayerContext();
     const [defaultPosition, setDefaultPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -32,10 +32,10 @@ const PortLayer: React.FC<PortLayerProps> = ({ onClose, style }) => {
         };
 
         updateDefaultPosition();
-        window.addEventListener('resize', updateDefaultPosition);
+        window.addEventListener("resize", updateDefaultPosition);
 
         return () => {
-            window.removeEventListener('resize', updateDefaultPosition);
+            window.removeEventListener("resize", updateDefaultPosition);
         };
     }, []);
 
@@ -56,15 +56,21 @@ const PortLayer: React.FC<PortLayerProps> = ({ onClose, style }) => {
 
     const handleItemClick = (item: string) => {
         setSelectedItem(item);
-        const newItems = item === 'project' ? PROJECTS : WORKS;
+        const newItems = item === "project" ? PROJECTS : WORKS;
         setSelectedDetail(newItems[0] || null);
     };
 
-    const items = selectedItem === 'project' ? PROJECTS : WORKS;
+    const items = selectedItem === "project" ? PROJECTS : WORKS;
 
     return (
         <Draggable nodeRef={nodeRef} defaultPosition={defaultPosition}>
-            <div ref={nodeRef} id='port-layer' className="w-[46.875rem] h-[37.5rem] fixed text-white font-nanumSquareNeo port-layer" style={{ top: defaultPosition.y, left: defaultPosition.x, ...style }} onClick={() => bringToFront('layer2')}>
+            <div
+                ref={nodeRef}
+                id="port-layer"
+                className="w-[46.875rem] h-[37.5rem] fixed text-white font-nanumSquareNeo port-layer"
+                style={{ top: defaultPosition.y, left: defaultPosition.x, ...style }}
+                onClick={() => bringToFront("layer2")}
+            >
                 <div className="bg-[#223167a8] backdrop-blur-[30px] h-[calc(100%-3.75rem)] rounded-lg overflow-y-scroll flex">
                     <PortSidebar selectedItem={selectedItem} handleItemClick={handleItemClick} />
                     <PortContentArea selectedDetail={selectedDetail} items={items} handleDetailClick={setSelectedDetail} selectedItem={selectedItem} />

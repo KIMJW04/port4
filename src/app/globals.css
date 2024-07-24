@@ -367,7 +367,7 @@ body {
     backdrop-filter: blur(30px); /* Ensure this is not overridden by other CSS */
 }
 
-.layer__footer{
+.layer__footer {
     @apply flex justify-between absolute left-0 bottom-1 w-full h-[3.75rem] bg-[#22316767] backdrop-blur-[10px] text-white p-[19px] font-nanumSquareNeo rounded-b-lg;
 }
 
@@ -382,7 +382,7 @@ body {
 }
 
 .loader__circle:after {
-    content: '';
+    content: "";
     position: absolute;
     width: 5px;
     height: 5px;
@@ -412,22 +412,44 @@ body {
 
 @layer components {
     @keyframes rotator {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(270deg); }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(270deg);
+        }
     }
 
     @keyframes colors {
-        0% { stroke: #4285f4; }
-        25% { stroke: #de3e35; }
-        50% { stroke: #f7c223; }
-        75% { stroke: #1b9a59; }
-        100% { stroke: #4285f4; }
+        0% {
+            stroke: #4285f4;
+        }
+        25% {
+            stroke: #de3e35;
+        }
+        50% {
+            stroke: #f7c223;
+        }
+        75% {
+            stroke: #1b9a59;
+        }
+        100% {
+            stroke: #4285f4;
+        }
     }
 
     @keyframes dash {
-        0% { stroke-dashoffset: 187; }
-        50% { stroke-dashoffset: 46.75; transform: rotate(135deg); }
-        100% { stroke-dashoffset: 187; transform: rotate(450deg); }
+        0% {
+            stroke-dashoffset: 187;
+        }
+        50% {
+            stroke-dashoffset: 46.75;
+            transform: rotate(135deg);
+        }
+        100% {
+            stroke-dashoffset: 187;
+            transform: rotate(450deg);
+        }
     }
 
     .spinner {
@@ -453,14 +475,18 @@ body {
     border-radius: 50%;
 }
 
-#footer .menu ul li:hover+li button {
+#footer .menu ul li:hover + li button {
     transform: scale(1.5);
     margin: 0 1.5em;
 }
 
 @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 .animate-marquee {
@@ -469,7 +495,6 @@ body {
     animation: marquee 10s linear infinite;
 }
 
-.layer_tool{
+.layer_tool {
     @apply w-[80vw] h-[86vh] fixed rounded-lg text-white font-nanumSquareNeo;
 }
-
