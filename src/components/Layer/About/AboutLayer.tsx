@@ -46,7 +46,7 @@ const AboutLayer: React.FC<AboutLayerProps> = ({ onClose, style }) => {
 
     return (
         <Draggable nodeRef={nodeRef} defaultPosition={defaultPosition}>
-            <div ref={nodeRef} id="about_layer" className="w-[80vw] h-[86vh] fixed rounded-lg text-white font-nanumSquareNeo" style={{ top: defaultPosition.y, left: defaultPosition.x, ...style }} onClick={() => bringToFront('about')}>
+            <div ref={nodeRef} id="about_layer" className="layer_tool" style={{ top: defaultPosition.y, left: defaultPosition.x, ...style }} onClick={() => bringToFront('about')}>
                 <div className="layer__contents">
                     <div className="layer__bg"></div>
                     <div className="flex items-center head">

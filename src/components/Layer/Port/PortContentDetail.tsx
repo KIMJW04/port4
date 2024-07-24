@@ -1,24 +1,61 @@
-import React from 'react';
+import { useState } from 'react';
+import ReactDOM from 'react-dom';
+import PortModal from './PortModal';
+import Link from 'next/link';
 
 interface PortContentDetailProps {
-    detail: { description?: string } | null; // detail이 null일 수도 있음을 명시
+    detail: {
+        title: string;
+        img: string[]; // 이미지 배열
+        description: string;
+        detail_description: string[]; // 상세 설명 배열
+        link: string;
+        github: string;
+    } | null;
 }
 
 const PortContentDetail: React.FC<PortContentDetailProps> = ({ detail }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     if (!detail) {
-        return <div className="m-[0.625rem] text-sm">상세 정보가 없습니다.</div>; // detail이 null일 때 처리
+        return <div className="m-[0.625rem] text-sm">상세 정보가 없습니다.</div>;
     }
 
+    const backgroundImageStyle = detail.img.length > 0 ? { backgroundImage: `url(${detail.img[0]})` } : {};
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+        const contentElement = document.getElementById('port_content');
+        if (contentElement) {
+            contentElement.classList.add('hidden');
+        }
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        const contentElement = document.getElementById('port_content');
+        if (contentElement) {
+            contentElement.classList.remove('hidden');
+        }
+    };
+
     return (
-        <div>
-            <div className="border border-[#cccccc2d] h-[18.75rem] m-[0.625rem]"></div>
+        <div id="port_content">
+            <div
+                className="border border-[#cccccc2d] h-[18.75rem] m-[0.625rem] bg-cover bg-center"
+                style={backgroundImageStyle}
+            ></div>
             <p className="m-[0.625rem] text-sm">{detail.description}</p>
-            <a href="#" className="text-sm text-center border border-[#cccccc2d] px-[0.4375rem] ml-[0.625rem] inline-block">
+            <button
+                onClick={handleOpenModal}
+                className="text-sm text-center border border-[#cccccc2d] px-[0.4375rem] ml-[0.625rem] inline-block text-white"
+            >
                 자세히 보기
-            </a>
-            <a href="#" className="text-sm text-center border border-[#cccccc2d] px-[0.4375rem] ml-[0.625rem] inline-block">
+            </button>
+            <Link href={detail.link || '#'} className="text-sm text-center border border-[#cccccc2d] px-[0.4375rem] ml-[0.625rem] inline-block">
                 실제 사이트 보기
-            </a>
+            </Link>
+            {isModalOpen && ReactDOM.createPortal(<PortModal detail={detail} onClose={handleCloseModal} />, document.body)}
         </div>
     );
 };

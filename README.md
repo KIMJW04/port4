@@ -9,8 +9,6 @@ npm install react-youtube
 npm install three
 npm install he
 npm install next-auth@beta
-npm install socket.io 
-npm install socket.io-client
 npm install mongoose
 ```
 

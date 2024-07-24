@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { SessionProvider } from 'next-auth/react';
-import io from 'socket.io-client';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Main from '@/components/Main';
@@ -20,26 +19,7 @@ const ConditionalLayout = ({ children }: ConditionalLayoutProps): JSX.Element =>
     const [loading, setLoading] = useState<boolean>(true);
     const [percent, setPercent] = useState<number>(0);
     const pathname = usePathname();
-    const [socket, setSocket] = useState<any>(null);
 
-    useEffect(() => {
-        const socket = io({
-            path: '/api/socket',
-        });
-        setSocket(socket);
-
-        socket.on('connect', () => {
-            console.log('Connected to Socket.io server');
-        });
-
-        socket.on('message', (msg) => {
-            console.log('New message:', msg);
-        });
-
-        return () => {
-            socket.disconnect();
-        };
-    }, []);
 
     useEffect(() => {
         const handleRouteChange = () => {

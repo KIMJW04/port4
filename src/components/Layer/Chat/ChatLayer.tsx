@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useSocketContext } from '@/context/SocketContext';
 import Draggable from 'react-draggable';
 
 interface ChatLayerProps {
@@ -8,14 +7,8 @@ interface ChatLayerProps {
 }
 
 const ChatLayer: React.FC<ChatLayerProps> = ({ onClose, style }) => {
-    const { messages, sendMessage } = useSocketContext();
     const [inputMessage, setInputMessage] = useState('');
     const nodeRef = useRef<HTMLDivElement>(null);
-
-    const handleSendMessage = () => {
-        sendMessage(inputMessage);
-        setInputMessage('');
-    };
 
     return (
         <Draggable nodeRef={nodeRef}>
@@ -23,11 +16,7 @@ const ChatLayer: React.FC<ChatLayerProps> = ({ onClose, style }) => {
                 <div className="p-4">
                     <h3 className="text-lg font-bold">Chat</h3>
                     <div className="overflow-y-auto h-[300px] border border-gray-500 p-2">
-                        {messages.map((message, index) => (
-                            <div key={index} className="my-2 p-2 bg-gray-700 rounded">
-                                {message}
-                            </div>
-                        ))}
+
                     </div>
                     <div className="mt-4 flex">
                         <input
@@ -36,7 +25,7 @@ const ChatLayer: React.FC<ChatLayerProps> = ({ onClose, style }) => {
                             value={inputMessage}
                             onChange={(e) => setInputMessage(e.target.value)}
                         />
-                        <button className="ml-2 p-2 bg-blue-500 rounded" onClick={handleSendMessage}>
+                        <button className="ml-2 p-2 bg-blue-500 rounded">
                             Send
                         </button>
                     </div>

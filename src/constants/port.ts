@@ -1,29 +1,41 @@
 export const PROJECTS = [
     {
         title: 'TravelRank',
-        img: './assets/img/travelrank.png',
+        img: ['./assets/img/travelrank01.png', './assets/img/travelrank02.png', './assets/img/travelrank03.png'],
         description: 'Python으로 수집한 한국의 각 지역별 여행지를 순위별로 React와 Sass를 사용하여 만든 사이트입니다.',
-        link: 'https://travelrank.netlify.app'
+        detail_description: ['React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.'],
+        link: 'https://travelrㅂank.netlify.app',
+        github: 'https://github.com/KIMJW04/youtube_att',
+        footer_coment: '😎 Python 크롤링과 React로 만든 사이트입니다',
     },
     {
         title: 'Onel',
-        img: 'path/to/image2.jpg',
+        img: ['./assets/img/travelrank01.png', './assets/img/travelrank02.png', './assets/img/travelrank03.png'],
         description: 'Next.js와 Sass, tailwindcss를 사용하여 만든 네일샵 리뷰 사이트입니다. 관리자페이지가 따로 존재하며 관리자 페이지는 TypeScript를 사용하였습니다.',
-        link: 'https://onel.vercel.app'
+        detail_description: ['React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.'],
+        link: 'https://onel.vercel.app',
+        github: 'https://github.com/KIMJW04/youtube_att',
+        footer_coment: '😎 Next.js와 tailwindcss, Python크롤링으로 만든 사이트입니다',
     }
 ];
 
 export const WORKS = [
     {
-        title: 'Work1',
-        img: 'path/to/image3.jpg',
-        description: 'Work1 description goes here...',
-        link: '/work1'
+        title: 'History Youtube',
+        img: ['./assets/img/youtubeAtt01.png', './assets/img/youtubeAtt02.png', './assets/img/youtubeAtt03.png'],
+        description: 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.',
+        detail_description: ['React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.'],
+        link: 'https://youtube-att.vercel.app/',
+        github: 'https://github.com/KIMJW04/youtube_att',
+        footer_coment: '😎 React와 Youtube API로 만든 사이트입니다',
     },
     {
-        title: 'Work2',
-        img: 'path/to/image4.jpg',
-        description: 'Work2 description goes here...',
-        link: '/work2'
+        title: 'Youtube Music',
+        img: ['./assets/img/youtubeMusic01.png', './assets/img/youtubeMusic02.png', './assets/img/youtubeMusic03.png'],
+        description: 'React와 Youtube API를 이용하여 Python으로 수집한 최신 Top 100의 트랜드 음악들을 확인하며 원하는 노래를 검색하여 들을 수 있는 사이트입니다.',
+        detail_description: ['React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.', 'React와 Youtube API를 이용하여 만든 역사 유튜브 사이트입니다. 역사관려 영상들을 유튜브 광고없이 시청가능합니다.'],
+        link: 'https://miento-music.netlify.app/',
+        github: 'https://github.com/KIMJW04/youtube_music',
+        footer_coment: '😎 React와 Youtube API및 Python크롤링으로 만든 사이트입니다',
     }
 ];
