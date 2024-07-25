@@ -1,6 +1,6 @@
 import { signIn } from "@/auth"
 
-export function SignInPage() {
+export function Page() {
     return (
         <div className="flex items-center justify-center h-screen bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md w-80">
@@ -34,4 +34,4 @@ export function SignInPage() {
     );
 }
 
-export default SignInPage;
+export default Page;
