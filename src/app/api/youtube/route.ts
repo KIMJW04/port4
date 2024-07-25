@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import axios from 'axios';
 
 interface VideoSnippet {
@@ -32,7 +33,7 @@ interface FetchVideosResponse {
     nextPageToken: string;
 }
 
-export async function fetchVideos(query = 'full stack', pageToken = ''): Promise<FetchVideosResponse> {
+async function fetchVideos(query: string = 'full stack', pageToken: string = ''): Promise<FetchVideosResponse> {
     const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
 
     if (!apiKey) {
@@ -64,5 +65,19 @@ export async function fetchVideos(query = 'full stack', pageToken = ''): Promise
     } catch (error) {
         console.error('Error fetching videos', error);
         return { videos: [], nextPageToken: '' };
+    }
+}
+
+export async function GET(request: Request) {
+    const url = new URL(request.url);
+    const query = url.searchParams.get('query') || 'full stack';
+    const pageToken = url.searchParams.get('pageToken') || '';
+
+    try {
+        const result = await fetchVideos(query, pageToken);
+        return NextResponse.json(result);
+    } catch (error) {
+        console.error('Error in GET handler', error);
+        return NextResponse.json({ videos: [], nextPageToken: '' }, { status: 500 });
     }
 }
