@@ -74,7 +74,7 @@ const PortModal: React.FC<PortModalProps> = ({ detail, onClose }) => {
                     </div>
                     <div className="layer__footer flex justify-between items-center absolute left-0 bottom-1 w-full h-[3.75rem] bg-[#22316767] backdrop-blur-[10px] text-white p-[19px] font-nanumSquareNeo rounded-b-lg">
                         <p className="text-base text-center ment">{detail.footer_coment}</p>
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 items-center">
                             <Link href={detail.link} passHref className="p-2 rounded border border-white py-1 text-sm">
                                 SITE
                             </Link>
