@@ -1,28 +1,28 @@
 // components/Header.tsx
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { SiYoutubemusic } from 'react-icons/si';
-import MusicPlayer from './MusicPlayer';
+import React, { useState, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { SiYoutubemusic } from "react-icons/si";
+import MusicPlayer from "./MusicPlayer";
 
 interface HeaderProps {
     onLoginButtonClick: () => void; // Add prop for login button click
 }
 
 const Header: React.FC<HeaderProps> = ({ onLoginButtonClick }) => {
-    const [currentTime, setCurrentTime] = useState<string>('');
-    const [locationName, setLocationName] = useState<string>('KOREA');
+    const [currentTime, setCurrentTime] = useState<string>("");
+    const [locationName, setLocationName] = useState<string>("KOREA");
     const [isMusicPlayerVisible, setIsMusicPlayerVisible] = useState<boolean>(false);
     const { data: session, status } = useSession();
 
     useEffect(() => {
         const updateTime = () => {
             setCurrentTime(
-                new Date().toLocaleTimeString('ko-KR', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
+                new Date().toLocaleTimeString("ko-KR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
                 })
             );
         };
@@ -41,11 +41,11 @@ const Header: React.FC<HeaderProps> = ({ onLoginButtonClick }) => {
                 if (data.name) {
                     setLocationName(data.name);
                 } else {
-                    setLocationName('KOREA');
+                    setLocationName("KOREA");
                 }
             } catch (error) {
-                console.error('Error fetching location:', error);
-                setLocationName('KOREA');
+                console.error("Error fetching location:", error);
+                setLocationName("KOREA");
             }
         };
 
@@ -55,23 +55,23 @@ const Header: React.FC<HeaderProps> = ({ onLoginButtonClick }) => {
         };
 
         const handleGeoError = (error: GeolocationPositionError) => {
-            console.error('Geolocation error:', error);
-            setLocationName('KOREA');
+            console.error("Geolocation error:", error);
+            setLocationName("KOREA");
         };
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(handleGeoSuccess, handleGeoError);
         } else {
-            console.error('Geolocation is not supported by this browser.');
-            setLocationName('KOREA');
+            console.error("Geolocation is not supported by this browser.");
+            setLocationName("KOREA");
         }
     }, []);
 
-    const currentDate = new Date().toLocaleDateString('ko-KR', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        weekday: 'long',
+    const currentDate = new Date().toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        weekday: "long",
     });
 
     const toggleMusicPlayer = () => {
@@ -81,24 +81,34 @@ const Header: React.FC<HeaderProps> = ({ onLoginButtonClick }) => {
     return (
         <header id="header" className="fixed top-0 left-0 z-50 w-full bg-black bg-opacity-50 backdrop-blur-lg font-GmarketSans">
             <div className="flex items-center justify-between w-full">
-                <div className='flex items-center'>
+                <div className="flex items-center">
                     <h1 className="flex text-xs font-bold text-white uppercase pl-[1.875rem] pr-5 pb-3 pt-[0.625rem] relative after:content-['*'] after:left-[10px] after:top-[11px] after:w-[14px] after:h-[14px] after:bg-logo after:bg-cover after:absolute">
                         Jin Woo
                     </h1>
-                    {status === 'authenticated' ? (
-                        <button className='font-bold text-white text-xs border rounded p-1' onClick={() => signOut()}>Logout</button>
+                    {status === "authenticated" ? (
+                        <button
+                            className="border-[#ffffff66] font-GmarketSans font-normal text-[#ffffff66] text-xs border py-[0.125rem] px-[0.625rem] ml-[0.625rem] lowercase rounded-[30px]"
+                            onClick={() => signOut()}
+                        >
+                            Logout
+                        </button>
                     ) : (
-                        <button className='font-bold text-white text-xs border rounded p-1' onClick={onLoginButtonClick}>Login</button> // Use prop to handle login
+                        <button
+                            className="border-[#ffffff66] font-GmarketSans font-normal text-[#ffffff66] text-xs border py-[0.125rem] px-[0.625rem] ml-[0.625rem] lowercase rounded-[30px]"
+                            onClick={onLoginButtonClick}
+                        >
+                            Login
+                        </button> // Use prop to handle login
                     )}
                 </div>
                 <div className="flex items-center right">
-                    <div className="relative w-5 h-5">
+                    <div className="relative w-5 h-5 font-GmarketSans">
                         <SiYoutubemusic className="text-xl cursor-pointer text-gray" onClick={toggleMusicPlayer} />
                         <MusicPlayer isVisible={isMusicPlayerVisible} setVisible={setIsMusicPlayerVisible} />
                     </div>
-                    <div className="pr-5 ml-5 text-sm text-white">
+                    <div className="pr-5 ml-5 text-sm text-white font-GmarketSans">
                         {currentDate}
-                        <em className="ml-2 font-bold">{locationName}</em>
+                        <em className="ml-2 font-bold font-GmarketSans">{locationName}</em>
                     </div>
                 </div>
             </div>

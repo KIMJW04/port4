@@ -73,16 +73,17 @@ const PortModal: React.FC<PortModalProps> = ({ detail, onClose }) => {
                         </div>
                     </div>
                     <div className="layer__footer flex justify-between items-center absolute left-0 bottom-1 w-full h-[3.75rem] bg-[#22316767] backdrop-blur-[10px] text-white p-[19px] font-nanumSquareNeo rounded-b-lg">
-                        <p className="text-base text-center ment">{detail.footer_coment}</p>
-                        <div className="flex gap-6 items-center">
-                            <Link href={detail.link} passHref className="p-2 rounded border border-white py-1 text-sm">
-                                SITE
+                        <p className="text-base text-center ment">
+                            {detail.footer_coment} 사이트를 보고 싶다면{" "}
+                            <Link href={detail.link} className="underline-offset-1 underline">
+                                사이트 보기
+                            </Link>{" "}
+                            코드를 보고 싶다면{" "}
+                            <Link href={detail.github} className="underline-offset-1 underline">
+                                코드 보기
                             </Link>
-                            <Link href={detail.github} passHref className="p-2 rounded border border-white py-1 text-sm">
-                                GitHub
-                            </Link>
-                            <span className="block text-center cursor-pointer close text-xl font-bold" onClick={onClose}></span>
-                        </div>
+                        </p>
+                        <span className="block text-center cursor-pointer close text-xl font-bold" onClick={onClose}></span>
                     </div>
                 </div>
             </div>
