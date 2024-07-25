@@ -2,10 +2,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { saveUserToDatabase } from '@/lib/db';
 
+interface User {
+    id: string;
+    name: string;
+    email: string;
+    image: string;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const user = req.body;
+            const user = req.body as User;
             await saveUserToDatabase(user);
             res.status(200).json({ message: 'User saved successfully' });
         } catch (error) {
