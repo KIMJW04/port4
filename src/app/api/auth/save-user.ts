@@ -1,6 +1,6 @@
-// pages/api/save-user.ts
-import { NextApiRequest, NextApiResponse } from 'next';
-import { saveUserToDatabase } from '@/lib/db';
+// src/pages/api/save-user.ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+import clientPromise from '@/lib/db';
 
 interface User {
     id: string;
@@ -9,10 +9,30 @@ interface User {
     image: string;
 }
 
+async function saveUserToDatabase(user: User) {
+    try {
+        const client = await clientPromise;
+        const db = client.db();
+        const collection = db.collection('users');
+
+        // Update or insert the user document
+        await collection.updateOne(
+            { email: user.email },  // 이메일을 기준으로 업데이트
+            { $set: user },
+            { upsert: true }
+        );
+
+        console.log("User saved successfully");
+    } catch (error) {
+        console.error("Error saving user to database:", error);
+        throw error;
+    }
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         try {
-            const user = req.body as User;
+            const user = req.body;
             await saveUserToDatabase(user);
             res.status(200).json({ message: 'User saved successfully' });
         } catch (error) {
