@@ -18,7 +18,7 @@ const VideoBackground: React.FC = () => {
     return (
         <video
             ref={videoRef}
-            className="object-cover w-full h-full bg-black video-background opacity-80"
+            className="object-cover w-full h-full bg-black video-background opacity-80 videoBG"
             autoPlay
             muted
             playsInline

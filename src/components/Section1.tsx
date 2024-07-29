@@ -1,6 +1,7 @@
 // src/components/Section1.tsx
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import SplitType from 'split-type';
 import About from './About';
 
 const Section1: React.FC = () => {
@@ -8,11 +9,16 @@ const Section1: React.FC = () => {
 
     useEffect(() => {
         if (sectionRef.current) {
-            gsap.fromTo(
-                sectionRef.current,
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 1 }
-            );
+            const targets = gsap.utils.toArray(".split");
+
+            targets.forEach((target) => {
+                let SplitClient = new SplitType(target, {
+                    types: 'lines, words, chars',
+                });
+            });
+
+            gsap.set('.about p .word', { opacity: 0 });
+            gsap.set('.about h1 .char', { opacity: 0 });
         }
     }, []);
 

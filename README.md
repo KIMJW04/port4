@@ -1,8 +1,9 @@
 # 설치
 
 ```bash
-npm i gsap
-npm i sass
+npm install gsap
+npm install gsap split-type
+npm install sass
 npm install react-icons
 npm install react-draggable
 npm install react-youtube
